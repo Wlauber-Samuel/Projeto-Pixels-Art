@@ -9,8 +9,8 @@ function divMae() {
         const divMae = document.createElement('div');
         divMae.type = 'color';
         divMae.style.backgroundColor = 'white';
-        divMae.style.width = '40px';
-        divMae.style.height = '40px';
+        divMae.style.width = '50px';
+        divMae.style.height = '50px';
         divMae.style.border = '1px solid black';
         divMae.style.display = 'inline-block';
         const color = document.getElementById('color-palette');
@@ -48,6 +48,7 @@ function pixel() {
         divMae.style.border = '1px solid black';
         divMae.style.width = '40px';
         divMae.style.height = '40px';
+        divMae.style.alignItems = 'center';
         const color = document.getElementById('pixel-board');
         divMae.className = 'pixel';
         color.appendChild(divMae);
