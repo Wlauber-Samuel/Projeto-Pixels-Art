@@ -35,7 +35,7 @@ function paint() {
         cor[index].style.backgroundColor = coresAleatorias();
     }
 }
-
+let salvaCor = 'rgb(0, 0, 0)';
 function modificaClasse() {
     const cor = document.querySelectorAll('.color');
     for (let index = 0; index < cor.length; index += 1) {
@@ -43,6 +43,7 @@ function modificaClasse() {
             for (let index = 0; index < cor.length; index += 1) {
                 cor[index].className = 'color';
             }
+            salvaCor = e.target.style.backgroundColor;
             e.target.className = 'color selected';
         });
     }
@@ -64,9 +65,14 @@ function pixel() {
         const color = document.getElementById('pixel-board');
         divMae.className = 'pixel';
         color.appendChild(divMae);
-    }
+        }
 }
 
+const color = document.getElementById('pixel-board');
+function mudarCor (event) {
+    event.target.style.backgroundColor = salvaCor;
+}
+color.addEventListener('click', mudarCor);
 divMae();
 aleatorioBtn();
 paint();
