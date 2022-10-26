@@ -40,10 +40,9 @@ function modificaClasse() {
     const cor = document.querySelectorAll('.color');
     for (let index = 0; index < cor.length; index += 1) {
         cor[index].addEventListener('click', (e) => {
-           for (let index = 0; index < cor.length; index += 1) {
-            cor[index].className = 'color';
-            
-           }
+            for (let index = 0; index < cor.length; index += 1) {
+                cor[index].className = 'color';
+            }
             e.target.className = 'color selected';
         });
     }
