@@ -92,19 +92,73 @@ function pixel() {
 const color = document.getElementById('pixel-board');
 function mudarCor(event) {
   event.target.style.backgroundColor = salvaCor;
+  salvaPixels();
 }
 color.addEventListener('click', mudarCor);
 
 const button = document.getElementById('clear-board');
 button.addEventListener('click', () => {
-
-  let pixels = document.getElementsByClassName('pixel');
+  const pixels = document.getElementsByClassName('pixel');
   for (let index = 0; index < pixels.length; index += 1) {
     pixels[index].style.backgroundColor = 'white';
   }
+  salvaPixels();
+});
+
+function salvaPixels() {
+  let saveDrawing = [];
+  const pxs = document.getElementsByClassName('pixel');
+  for (let index = 0; index < pxs.length; index += 1) {
+    saveDrawing.push(pxs[index].style.backgroundColor);
+  }
+  localStorage.setItem('pixelBoard', JSON.stringify(saveDrawing));
+}
+
+function recuperaLS() {
+  let recuperaCor = localStorage.getItem('pixelBoard');
+  const cor = document.querySelectorAll('.pixel');
+  if (recuperaCor !== null) {
+    let acessaValores = JSON.parse(recuperaCor);
+    cor[0].style.backgroundColor = acessaValores[0];
+    for (let index = 1; index < cor.length; index += 1) {
+      cor[index].style.backgroundColor = acessaValores[index];
+    }
+  }
+}
+function apagarQuadro () {
+  const cor = document.querySelectorAll('.pixel');
+  
+    for (let index = 1; index < cor.length; index += 1) {
+      cor.remove();
+    }
+  } 
+
+const btnGenerateSquares = document.getElementById('generate-board');
+btnGenerateSquares.addEventListener('click', () => {
+
+  const inputUser = document.getElementById('board-size').value;
+
+  if (!inputUser) {
+    alert("Board inválido!");
+  } else {
+    apagarQuadro();
+    localStorage.removeItem('pixelBoard');
+    for (let index = 0; index < inputUser * inputUser; index += 1) {
+      const px = document.createElement('div');
+      px.style.backgroundColor = 'white';
+      px.style.border = '1px solid black';
+      px.style.width = '40px';
+      px.style.height = '40px';
+      const color = document.getElementById('pixel-board');
+      px.className = 'pixel';
+      color.appendChild(px);
+    }
+  }
+
 });
 divMae();
 aleatorioBtn();
 verificaLS();
 pixel();
 modificaClasse();
+recuperaLS();
