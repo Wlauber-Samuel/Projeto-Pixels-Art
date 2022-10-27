@@ -76,16 +76,30 @@ function aleatorioBtn() {
 }
 
 function pixel() {
-  for (let index = 0; index < 25; index += 1) {
-    const divMae = document.createElement('div');
-    // divMae.type = 'pixel';
-    divMae.style.backgroundColor = 'white';
-    divMae.style.border = '1px solid black';
-    divMae.style.width = '40px';
-    divMae.style.height = '40px';
-    const color = document.getElementById('pixel-board');
-    divMae.className = 'pixel';
-    color.appendChild(divMae);
+  const recuperaBoardSize = localStorage.getItem('boardSize');
+  if (recuperaBoardSize !== null) {
+    for (let index = 0; index < recuperaBoardSize * recuperaBoardSize; index += 1) {
+      const divMae = document.createElement('div');
+      divMae.style.backgroundColor = 'white';
+      divMae.style.border = '1px solid black';
+      divMae.style.width = '40px';
+      divMae.style.height = '40px';
+      const color = document.getElementById('pixel-board');
+      divMae.className = 'pixel';
+      color.appendChild(divMae);
+    }
+  } else {
+    for (let index = 0; index < 25; index += 1) {
+      const divMae = document.createElement('div');
+      // divMae.type = 'pixel';
+      divMae.style.backgroundColor = 'white';
+      divMae.style.border = '1px solid black';
+      divMae.style.width = '40px';
+      divMae.style.height = '40px';
+      const color = document.getElementById('pixel-board');
+      divMae.className = 'pixel';
+      color.appendChild(divMae);
+    }
   }
 }
 
@@ -149,6 +163,7 @@ btnGenerateSquares.addEventListener('click', () => {
     } else if (inputUser > 50) {
       salvaValor = 50;
     }
+    localStorage.setItem('boardSize', salvaValor);
     for (let index = 0; index < salvaValor * salvaValor; index += 1) {
       const px = document.createElement('div');
       px.style.backgroundColor = 'rgb(255, 255, 255)';
