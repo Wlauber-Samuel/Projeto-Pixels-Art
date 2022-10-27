@@ -78,6 +78,8 @@ function aleatorioBtn() {
 function pixel() {
   const recuperaBoardSize = localStorage.getItem('boardSize');
   if (recuperaBoardSize !== null) {
+    const color = document.getElementById('pixel-board');
+    color.style.width = `${recuperaBoardSize * 43}px`;
     for (let index = 0; index < recuperaBoardSize * recuperaBoardSize; index += 1) {
       const divMae = document.createElement('div');
       divMae.style.backgroundColor = 'white';
