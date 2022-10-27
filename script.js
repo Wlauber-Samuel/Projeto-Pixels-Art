@@ -34,6 +34,11 @@ function paint() {
     for (let index = 1; index < cor.length; index += 1) {
         cor[index].style.backgroundColor = coresAleatorias();
     }
+    let salvaCoresLS = [];
+    for (let index = 0; index < cor.length; index += 1) {
+        salvaCoresLS.push(cor[index].style.backgroundColor);
+    }
+    localStorage.setItem('colorPalette', JSON.stringify(salvaCoresLS));
 }
 let salvaCor = 'rgb(0, 0, 0)';
 function modificaClasse() {
@@ -65,14 +70,23 @@ function pixel() {
         const color = document.getElementById('pixel-board');
         divMae.className = 'pixel';
         color.appendChild(divMae);
-        }
+    }
 }
 
 const color = document.getElementById('pixel-board');
-function mudarCor (event) {
+function mudarCor(event) {
     event.target.style.backgroundColor = salvaCor;
 }
 color.addEventListener('click', mudarCor);
+
+const button = document.getElementById('clear-board');
+button.addEventListener('click', () => {
+
+    let pixels = document.getElementsByClassName('pixel');
+    for (let index = 0; index < pixels.length; index += 1) {
+        pixels[index].style.backgroundColor = 'white';
+    }
+});
 divMae();
 aleatorioBtn();
 paint();
