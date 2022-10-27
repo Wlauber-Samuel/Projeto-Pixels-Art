@@ -6,10 +6,10 @@
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
-    padding: 20px;
     font-size: 0;
-    display: grid;
-    grid-template-columns: 40px 40px 40px 40px 40px;
+    width: 215px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 body {

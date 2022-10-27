@@ -125,31 +125,36 @@ function recuperaLS() {
     }
   }
 }
-function apagarQuadro () {
+function apagarQuadro() {
   const cor = document.querySelectorAll('.pixel');
-  
-    for (let index = 1; index < cor.length; index += 1) {
-      cor.remove();
-    }
-  } 
+
+  for (let index = cor.length - 1; index >= 0; index -= 1) {
+    cor[index].remove();
+  }
+}
 
 const btnGenerateSquares = document.getElementById('generate-board');
 btnGenerateSquares.addEventListener('click', () => {
-
   const inputUser = document.getElementById('board-size').value;
-
   if (!inputUser) {
     alert("Board inválido!");
   } else {
     apagarQuadro();
     localStorage.removeItem('pixelBoard');
-    for (let index = 0; index < inputUser * inputUser; index += 1) {
+    const color = document.getElementById('pixel-board');
+    color.style.width = `${inputUser * 43}px`;
+    let salvaValor = inputUser;
+    if (inputUser < 5) {
+      salvaValor = 5;
+    } else if (inputUser > 50) {
+      salvaValor = 50;
+    }
+    for (let index = 0; index < salvaValor * salvaValor; index += 1) {
       const px = document.createElement('div');
-      px.style.backgroundColor = 'white';
+      px.style.backgroundColor = 'rgb(255, 255, 255)';
       px.style.border = '1px solid black';
       px.style.width = '40px';
       px.style.height = '40px';
-      const color = document.getElementById('pixel-board');
       px.className = 'pixel';
       color.appendChild(px);
     }
